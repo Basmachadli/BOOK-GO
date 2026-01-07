@@ -1,20 +1,27 @@
 package fr.miage.bookandgo.Entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.sql.Date;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Setter
 @Getter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "users")
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
+    @SequenceGenerator(name = "user_seq", sequenceName = "USER_SEQ", allocationSize = 1)
+    private Long id;
 
     @Column(nullable = false)
     private String nom;
@@ -26,7 +33,7 @@ public class User {
     private String email;
 
     @Column(name = "numero_tel")
-    private Integer numeroTel;
+    private String numeroTel;
 
     @Column(name = "date_naissance")
     private LocalDate dateNaissance;
@@ -38,23 +45,16 @@ public class User {
     @Column(nullable = false)
     private Role role;
 
-    // ===== CONSTRUCTEURS =====
+    @Column(name = "date_inscription", nullable = false)
+    private LocalDateTime dateInscription;
 
-    public User() {
-    }
-
-    public User(String nom, String prenom, String email, Integer numeroTel,
-                LocalDate dateNaissance, String mdp, Role role) {
-        this.nom = nom;
-        this.prenom = prenom;
-        this.email = email;
-        this.numeroTel = numeroTel;
-        this.dateNaissance = dateNaissance;
-        this.mdp = mdp;
-        this.role = role;
-    }
 
     // ===== GETTERS / SETTERS =====
 
+    // ===== Méthode pour remplir la date automatiquement =====
+    @PrePersist
+    protected void onCreate() {
+        this.dateInscription = LocalDateTime.now();
+    }
 }
 
