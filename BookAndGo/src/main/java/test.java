@@ -5,7 +5,7 @@ public class test {
 
     public static void main(String[] args) throws Exception {
 
-        String url = "jdbc:oracle:thin:@etu-ora2.ut-capitole.fr:1550:siip";
+        String url = "jdbc:oracle:thin:@localhost:1550/siip";
         String user = "BOOKANDGO_G7";
         String password = "root";
 
