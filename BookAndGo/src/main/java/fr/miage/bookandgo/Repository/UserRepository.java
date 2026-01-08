@@ -18,4 +18,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
     // Tu peux aussi ajouter une recherche par prénom si besoin
     @Query("SELECT u FROM User u WHERE LOWER(u.prenom) LIKE LOWER(CONCAT('%', :keyword, '%'))")
     List<User> findByPrenomContainingIgnoreCase(@Param("keyword") String keyword);
+
+    // Vérifier si un email existe déjà
+    boolean existsByEmail(String email);
+
+    // Chercher un utilisateur par email (utile pour la connexion)
+    User findByEmail(String email);
 }

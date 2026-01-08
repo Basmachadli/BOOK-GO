@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Inscription</title>
+</head>
+<body>
+<h2>Inscription</h2>
+<form th:action="@{/inscription}" th:object="${inscriptionDTO}" method="post">
+    <input type="text" th:field="*{nom}" placeholder="Nom" required/><br/>
+    <input type="text" th:field="*{prenom}" placeholder="Prénom" required/><br/>
+    <input type="email" th:field="*{email}" placeholder="Email" required/><br/>
+    <input type="password" th:field="*{password}" placeholder="Mot de passe" required/><br/>
+    <select th:field="*{role}">
+        <option value="LOUEUR">Loueur</option>
+        <option value="AGENT">Agent Particulier</option>
+        <option value="AGENT_PRO">Agent Pro</option>
+    </select><br/>
+    <input type="text" th:field="*{siret}" placeholder="SIRET (Agent Pro seulement)"/><br/>
+    <input type="text" th:field="*{rib}" placeholder="RIB (Agent seulement)"/><br/>
+    <input type="text" th:field="*{nomPro}" placeholder="Nom entreprise (Agent Pro seulement)"/><br/>
+    <button type="submit">S’inscrire</button>
+</form>
+<p th:text="${error}"></p>
+<p th:text="${message}"></p>
+</body>
+</html>
