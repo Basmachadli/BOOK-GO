@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Liste des Agents</title>
+</head>
+<body>
+<h1>Liste des Agents</h1>
+
+<form method="get" action="/users">
+    <input type="text" name="keyword" placeholder="Rechercher par nom" th:value="${keyword}">
+    <button type="submit">Rechercher</button>
+</form>
+<table border="1">
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>TypeAgent</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="agent : ${agents}">
+        <td th:text="${agent.id}"></td>
+        <td th:text="${agent.typeAgent}"></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

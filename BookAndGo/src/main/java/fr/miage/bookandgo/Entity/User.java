@@ -16,11 +16,13 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Entity
 @Table(name = "users")
+//@Inheritance(strategy = InheritanceType.JOINED)
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
     @SequenceGenerator(name = "user_seq", sequenceName = "USER_SEQ", allocationSize = 1)
+    @Column(name = "id_user")
     private Long id;
 
     @Column(nullable = false)
@@ -48,6 +50,9 @@ public class User {
     @Column(name = "date_inscription", nullable = false)
     private LocalDateTime dateInscription;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status_compte", nullable = false)
+    private StatusCompte statusCompte = StatusCompte.ACTIF;
 
     // ===== GETTERS / SETTERS =====
 
