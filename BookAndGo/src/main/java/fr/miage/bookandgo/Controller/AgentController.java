@@ -1,9 +1,7 @@
 package fr.miage.bookandgo.Controller;
 
 import fr.miage.bookandgo.Entity.Agent;
-import fr.miage.bookandgo.Entity.User;
 import fr.miage.bookandgo.Repository.AgentRepository;
-import fr.miage.bookandgo.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
